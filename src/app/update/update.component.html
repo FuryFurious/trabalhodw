@@ -1,4 +1,4 @@
-<h2>REGISTRE-SE</h2>
+<h2>UPDATES</h2>
 
 <form>
     <div class="form-group">
@@ -14,7 +14,7 @@
                 [(ngModel)]="update.nome">
     </div>    
     <div class="form-group">
-        <label for="dataNascimento">DATA DE NASCIMENTO</label>
+        <label for="dataNascimento">DATA DE FABRICAÇÃO</label>
         <input type="date" class="form-control" id="dataNascimento" name="dataNascimento"
         [(ngModel)]="update.dataNascimento">
     </div>
@@ -26,14 +26,14 @@
         <tr>
             <th>ID DO PRODUTO</th>    
             <th>NOME</th>    
-            <th>DATA DE NASCIMENTO</th>
+            <th>DATA DE FABRICAÇÃO</th>
         </tr>
     </thead>
     <tbody>
         <tr *ngFor="let update of updates">
-            <td>{{ cliente.key }}</td>
-            <td>{{ cliente.nome }}</td>
-            <td>{{ cliente.dataNascimento }}</td>
+            <td>{{ update.key }}</td>
+            <td>{{ update.nome }}</td>
+            <td>{{ update.dataNascimento }}</td>
             <td><button class="btn btn-primary"
                 (click)="carregar(update)">Alterar</button></td>
             <td><button class="btn btn-primary"

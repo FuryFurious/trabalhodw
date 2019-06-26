@@ -1,22 +1,22 @@
-<h2>REGISTRE-SE</h2>
+<h2>CARROS</h2>
 
 <form>
     <div class="form-group">
-        <label for="id">ID DO PRODUTO</label>
+        <label for="id">ID DO CARRO</label>
         <input type="number" class="form-control" id="key" name="key"
                 placeholder="Digite o ID"
-                [(ngModel)]="update.key">
+                [(ngModel)]="carro.key">
     </div>  
     <div class="form-group">
-        <label for="nome">NOME</label>
+        <label for="nome">NOME DO CARRO</label>
         <input type="text" class="form-control" id="nome" name="nome"
                 placeholder="Digite seu nome"
-                [(ngModel)]="update.nome">
+                [(ngModel)]="carro.nome">
     </div>    
     <div class="form-group">
-        <label for="dataNascimento">DATA DE NASCIMENTO</label>
+        <label for="dataNascimento">DATA DE LANÇAMENTO</label>
         <input type="date" class="form-control" id="dataNascimento" name="dataNascimento"
-        [(ngModel)]="update.dataNascimento">
+        [(ngModel)]="carro.dataNascimento">
     </div>
     <button class="btn btn-primary" (click)="salvar()">Salvar</button> 
 </form>`
@@ -24,20 +24,20 @@
 <table class="table">
     <thead>
         <tr>
-            <th>ID DO PRODUTO</th>    
-            <th>NOME</th>    
-            <th>DATA DE NASCIMENTO</th>
+            <th>ID DO CARRO</th>    
+            <th>NOME DO CARRO</th>    
+            <th>DATA DE LANÇAMENTO</th>
         </tr>
     </thead>
     <tbody>
-        <tr *ngFor="let update of updates">
-            <td>{{ cliente.key }}</td>
-            <td>{{ cliente.nome }}</td>
-            <td>{{ cliente.dataNascimento }}</td>
+        <tr *ngFor="let carro of carros">
+            <td>{{ carro.key }}</td>
+            <td>{{ carro.nome }}</td>
+            <td>{{ carro.dataNascimento }}</td>
             <td><button class="btn btn-primary"
-                (click)="carregar(update)">Alterar</button></td>
+                (click)="carregar(carro)">Alterar</button></td>
             <td><button class="btn btn-primary"
-                (click)="excluir(update.key)">Excluir</button></td>
+                (click)="excluir(carro.key)">Excluir</button></td>
         </tr>
     </tbody>
 </table>

@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { OnInit, Component } from '@angular/core';
-import { Produto } from './produto.model';
+import { Update } from './update.model';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common'
 
@@ -11,31 +11,31 @@ import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
 @Component({
-    selector: 'produto',
-    templateUrl: './produto.component.html',
-    styleUrls: ['./produto.component.css']
+    selector: 'update',
+    templateUrl: './update.component.html',
+    styleUrls: ['./update.component.css']
 })
 
 @NgModule({
     imports: [FormsModule, CommonModule],
-    declarations: [ProdutoComponent]
+    declarations: [UpdateComponent]
 })
 
-export class ProdutoComponent implements OnInit {
+export class UpdateComponent implements OnInit {
 
-    produto: Produto;
-    produtosRef: AngularFireList<any>;
-    produtos: any[];
+    update: Update;
+    updatesRef: AngularFireList<any>;
+    updates: any[];
 
     constructor(private db: AngularFireDatabase) { }
 
     ngOnInit(): void {
-        this.produto = new Produto(null,null,null);
+        this.update = new Update(null,null,null);
         this.listar();
     }
 
     salvar() {
-        this.db.list('produtos').push(this.produto)
+        this.db.list('updates').push(this.update)
             .then((result: any) => {
                 console.log(result.key);
             });            
@@ -43,14 +43,31 @@ export class ProdutoComponent implements OnInit {
 
     listar() {        
         this.getAll().subscribe(
-            produtos => this.produtos = produtos,
+            updates => this.updates = updates,
             error => alert(error),
             () => console.log("terminou")
           );        
     }
 
+    carregar(update:Update) {
+        this.update = new Update(update.key,
+            update.nome, update.dataNascimento);{
+         };
+    }
+
+    excluir(key:string) {
+        if (confirm('Deseja realmente excluir?')) {
+            this.db.list('updates').remove(key)
+                .then((result: any) => {
+                    console.log(key);
+                });  
+        }
+    }
+
+
+    
     getAll() : Observable<any[]> {
-        return this.db.list('produtos')
+        return this.db.list('updates')
           .snapshotChanges()
           .pipe(
             map(changes => {

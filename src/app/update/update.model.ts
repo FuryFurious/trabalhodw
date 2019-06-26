@@ -1,4 +1,4 @@
-export class Cliente {
+export class Update {
 
     constructor(key: String, nome: String, dataNascimento: any) {
         this.key = key;

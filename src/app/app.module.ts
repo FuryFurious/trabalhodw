@@ -8,7 +8,8 @@ import { LoginComponent } from './login/login.component';
 
 import { ClienteComponent } from './cliente/cliente.component';
 import { TemplateComponent } from './template/template.component';
-import { ProdutoComponent } from './produto/produto.component';
+import { UpdateComponent } from './update/update.component';
+import { CarroComponent } from './carro/carro.component';
 
 import { AngularFireAuth  } from '@angular/fire/auth';
 
@@ -35,9 +36,11 @@ import { FormsModule } from '@angular/forms';
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireDatabaseModule,
     ClienteComponent,
-    ProdutoComponent,
+    UpdateComponent,
     LoginComponent,
-    TemplateComponent    
+    CarroComponent,
+    TemplateComponent
+
   ],
   providers: [AuthGuard, LoginService, AngularFireModule, AngularFireAuth],
   bootstrap: [AppComponent]

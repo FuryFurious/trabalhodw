@@ -1,4 +1,4 @@
-export class Cliente {
+export class Carro {
 
     constructor(key: String, nome: String, dataNascimento: any) {
         this.key = key;
@@ -9,5 +9,4 @@ export class Cliente {
     key: String;
     nome: String;
     dataNascimento:any;
-
 }

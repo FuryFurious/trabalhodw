@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { OnInit, Component } from '@angular/core';
-import { Cliente } from './cliente.model';
+import { Carro } from './carro.model';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common'
 
@@ -11,31 +11,31 @@ import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
 @Component({
-    selector: 'cliente',
-    templateUrl: './cliente.component.html',
-    styleUrls: ['./cliente.component.css']
+    selector: 'carro',
+    templateUrl: './carro.component.html',
+    styleUrls: ['./carro.component.css']
 })
 
 @NgModule({
     imports: [FormsModule, CommonModule],
-    declarations: [ClienteComponent]
+    declarations: [CarroComponent]
 })
 
-export class ClienteComponent implements OnInit {
+export class CarroComponent implements OnInit {
 
-    cliente: Cliente;
-    clientesRef: AngularFireList<any>;
-    clientes: any[];
+    carro: Carro;
+    carrosRef: AngularFireList<any>;
+    carros: any[];
 
     constructor(private db: AngularFireDatabase) { }
 
     ngOnInit(): void {
-        this.cliente = new Cliente(null,null,null);
+        this.carro = new Carro(null,null,null);
         this.listar();
     }
 
     salvar() {
-        this.db.list('clientes').push(this.cliente)
+        this.db.list('carros').push(this.carro)
             .then((result: any) => {
                 console.log(result.key);
             });            
@@ -43,29 +43,31 @@ export class ClienteComponent implements OnInit {
 
     listar() {        
         this.getAll().subscribe(
-            clientes => this.clientes = clientes,
+            carros => this.carros = carros,
             error => alert(error),
             () => console.log("terminou")
           );        
     }
 
-    carregar(cliente:Cliente) {
-        this.cliente = new Cliente(cliente.key,
-            cliente.nome, cliente.dataNascimento);{
+    carregar(carro:Carro) {
+        this.carro = new Carro(carro.key,
+            carro.nome, carro.dataNascimento);{
          };
     }
 
     excluir(key:string) {
         if (confirm('Deseja realmente excluir?')) {
-            this.db.list('clientes').remove(key)
+            this.db.list('carros').remove(key)
                 .then((result: any) => {
                     console.log(key);
                 });  
         }
     }
+
+
     
     getAll() : Observable<any[]> {
-        return this.db.list('clientes')
+        return this.db.list('carros')
           .snapshotChanges()
           .pipe(
             map(changes => {
