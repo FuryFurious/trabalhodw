@@ -1,6 +1,6 @@
 export class Carro {
 
-    constructor(key: String, nome: String, dataNascimento: any) {
+    constructor(key: String, nome: String, dataNascimento: Date) {
         this.key = key;
         this.nome = nome;
         this.dataNascimento = dataNascimento;
@@ -8,5 +8,5 @@ export class Carro {
 
     key: String;
     nome: String;
-    dataNascimento:any;
+    dataNascimento:Date;
 }

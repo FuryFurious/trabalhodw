@@ -63,6 +63,8 @@ export class ClienteComponent implements OnInit {
                 });  
         }
     }
+
+
     
     getAll() : Observable<any[]> {
         return this.db.list('clientes')
